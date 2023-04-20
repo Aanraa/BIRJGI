@@ -1,14 +1,52 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import NextAuth from "next-auth";
-import FirebaseAdapter from "@next-auth/firebase-adapter";
-import EmailProvider from "next-auth/providers/email";
-import { cert } from "firebase-admin/app";
+// import NextAuth from "next-auth";
+// import Providers from "next-auth/providers";
+// import firebase from "firebase/app";
+// import "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDUk4Y_DkdCYjAyAwpCWl0pwLC--rg8d3I",
+//   authDomain: "birjgi.firebaseapp.com",
+//   projectId: "birjgi",
+//   storageBucket: "birjgi.appspot.com",
+//   messagingSenderId: "677878599828",
+//   appId: "1:677878599828:web:c1c1d0b44760ccabe52481",
+// };
 
-// Your web app's Firebase configuration
+// // Initialize Firebase app
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(firebaseConfig);
+// }
+
+// export default NextAuth({
+//   providers: [
+//     Providers.Credentials({
+//       name: "Credentials",
+//       credentials: {
+//         email: { label: "Email", type: "email" },
+//         password: { label: "Password", type: "password" },
+//       },
+//       async authorize(credentials) {
+//         try {
+//           const userCredential = await firebase
+//             .auth()
+//             .signInWithEmailAndPassword(
+//               credentials.email,
+//               credentials.password
+//             );
+//           const { user } = userCredential;
+//           return Promise.resolve(user);
+//         } catch (error) {
+//           return Promise.reject(error);
+//         }
+//       },
+//     }),
+//   ],
+// });
+import Providers from "next-auth/providers";
+import { FirebaseAdapter } from "@next-auth/firebase-adapter";
+import firebase from "firebase/app";
+import "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDUk4Y_DkdCYjAyAwpCWl0pwLC--rg8d3I",
   authDomain: "birjgi.firebaseapp.com",
@@ -18,9 +56,23 @@ const firebaseConfig = {
   appId: "1:677878599828:web:c1c1d0b44760ccabe52481",
 };
 
-export default NextAuth({
-  providers: [EmailProvider({ server: { host: process.env } })],
-});
+const options = {
+  // your NextAuth options
+  providers: [
+    Providers.Email({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+    }),
+    // Add other providers you need
+  ],
+  adapter: FirebaseAdapter(firebaseConfig),
+};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export default options;

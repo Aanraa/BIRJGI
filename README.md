@@ -1,8 +1,7 @@
-# NINE4 TEMPLATE #2
-<img src="./img/main-page.png"></img>
+# BIRJGI #2
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Энэхүү төсөл нь та бүхэндээ зориулж хийсэн вэб юм.
 ## Getting Started
 
 First, run the development server:

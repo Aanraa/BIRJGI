@@ -17,7 +17,7 @@ export default function Main() {
           <div className="flex justify-center">
             <a
               className="inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-blue-400 hover:bg-gray-700"
-              href="https://www.instagram.com/aricaanraa_"
+              href="/product"
             >
               <span className="justify-center ">Захиалах{" ->"}</span>
             </a>

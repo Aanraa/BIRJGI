@@ -16,6 +16,7 @@ const Order = () => {
       setMeatQuantity(Math.floor(e));
       const a = Math.floor(e) * 2000;
       setMeatPrice(a);
+      updateSumPrice(a, potatoPrice);
     }
   }
 
@@ -27,7 +28,13 @@ const Order = () => {
       const a = Math.floor(e) * 2000;
       setPotatoQuantity(Math.floor(e));
       setPotatoPrice(a);
+      updateSumPrice(a, meatPrice);
     }
+  }
+
+  function updateSumPrice(meatPrice, potatoPrice) {
+    const newTotalPrice = meatPrice + potatoPrice;
+    setSumPrice(newTotalPrice);
   }
 
   useEffect(() => {
@@ -82,7 +89,7 @@ const Order = () => {
                       inputMode="numeric"
                       id="quantity"
                       name="quantity"
-                      min="1"
+                      min="0"
                       step="1"
                       value={meatQuantity}
                       onChange={(e) => updateMeatQuantity(e.target.value)}
@@ -119,7 +126,7 @@ const Order = () => {
                       inputMode="numeric"
                       id="quantity"
                       name="quantity"
-                      min="1"
+                      min="0"
                       step="1"
                       value={potatoQuantity}
                       onChange={(e) => updatePotatoQuantity(e.target.value)}

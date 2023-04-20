@@ -7,16 +7,9 @@ import { NextSeo } from "next-seo";
 export default function Home() {
   return (
     <div className="text-black">
-      <NextSeo
-        title="Home: nine4"
-        description="Welcome to nine4 homepage."
-        canonical="https://nine4-2.vercel.app/"
-        openGraph={{
-          url: "https://nine4-2.vercel.app/",
-        }}
-      />
+      <NextSeo title="Home: BIRJGI" description="Welcome to BIRJGI homepage." />
       <Head>
-        <title>nine4</title>
+        <title>BIRJGI</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
